@@ -1,0 +1,113 @@
+/*==================== RESET STYLES ====================*/
+@import 'import/reset.scss';
+/*==================== RESET STYLES ====================*/
+
+/*==================== FONTS ====================*/
+@import 'fonts.scss';
+/*==================== FONTS ====================*/
+
+/*==================== VARIABLES ====================*/
+$maxWidthLayout: 1440;
+$maxWidthContainer: 1290;
+$popFont: 'Poppins', sans-serif;
+$whiteColor: #fff;
+$pinkColor: #d6258f;
+$blackBg: #000;
+$blueBg: #020f1c;
+/*==================== VARIABLES ====================*/
+
+/*==================== MIXINS ====================*/
+// responsive value
+@mixin respValue($property, $startSize, $minSize, $type) {
+  $addSize: $startSize - $minSize;
+  @if $type==1 {
+    //Только если меньше контейнера
+    #{$property}: $startSize + px;
+    @media (max-width: #{$maxWidthContainer + px}) {
+      #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320}));
+    }
+  } @else if $type==2 {
+    //Только если больше контейнера
+    #{$property}: $startSize + px;
+    @media (min-width: #{$maxWidthContainer + px}) {
+      #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthLayout - 320}));
+    }
+  } @else {
+    //Всегда
+    #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthLayout - 320}));
+  }
+}
+// snippet (rv)
+// responsive value
+/*==================== MIXINS ====================*/
+
+/*==================== BASIC PARAMETERS ====================*/
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $lumbFont;
+  font-weight: 400;
+  line-height: 1.2;
+  background: $blackBg;
+  color: $whiteColor;
+
+  @media (max-width: 768.98px) {
+    &.lock {
+      overflow: hidden;
+    }
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.main {
+  flex: 1 1 auto;
+
+  &__events {
+    &:not(:last-child) {
+      @include respValue('margin-bottom', 60, 40, 1);
+    }
+  }
+
+  &__novelties {
+    &:not(:last-child) {
+      @include respValue('margin-bottom', 80, 0, 1);
+    }
+  }
+
+  &:not(:last-child) {
+    @include respValue('margin-bottom', 60, 40, 1);
+  }
+}
+/*==================== BASIC PARAMETERS ====================*/
+
+/*==================== REPEAT BLOCK ====================*/
+//! Container
+[class*='__container'] {
+  width: 100%;
+  max-width: $maxWidthContainer + px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+//! Responsive Image
+.ibg {
+  position: relative;
+
+  img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+  }
+}
+/*==================== REPEAT BLOCK ====================*/
