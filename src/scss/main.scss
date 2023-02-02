@@ -11,9 +11,6 @@ $maxWidthLayout: 1440;
 $maxWidthContainer: 1290;
 $popFont: 'Poppins', sans-serif;
 $whiteColor: #fff;
-$pinkColor: #d6258f;
-$blackBg: #000;
-$blueBg: #020f1c;
 /*==================== VARIABLES ====================*/
 
 /*==================== MIXINS ====================*/
@@ -47,11 +44,11 @@ html {
 }
 
 body {
-  font-family: $lumbFont;
+  font-family: $popFont;
   font-weight: 400;
   line-height: 1.2;
-  background: $blackBg;
-  color: $whiteColor;
+  background: #333;
+  color: #fff;
 
   @media (max-width: 768.98px) {
     &.lock {
@@ -70,16 +67,8 @@ body {
 .main {
   flex: 1 1 auto;
 
-  &__events {
-    &:not(:last-child) {
-      @include respValue('margin-bottom', 60, 40, 1);
-    }
-  }
-
-  &__novelties {
-    &:not(:last-child) {
-      @include respValue('margin-bottom', 80, 0, 1);
-    }
+  &__class,
+  &__class {
   }
 
   &:not(:last-child) {
