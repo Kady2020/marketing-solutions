@@ -125,12 +125,11 @@ html {
 
 body {
   font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  line-height: 1.2;
-  background: #333;
-  color: #fff;
+  line-height: 1.4;
+  background: #0d0d11;
+  color: #9c9c9c;
 }
-@media (max-width: 768.98px) {
+@media (max-width: 767.98px) {
   body.lock {
     overflow: hidden;
   }
@@ -140,7 +139,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100%;
-  overflow: hidden;
+  overflow: clip;
 }
 
 .main {
@@ -149,9 +148,9 @@ body {
 .main:not(:last-child) {
   margin-bottom: 60px;
 }
-@media (max-width: 1290px) {
+@media (max-width: 1310px) {
   .main:not(:last-child) {
-    margin-bottom: calc(40px + 20 * ((100vw - 320px) / 970));
+    margin-bottom: calc(40px + 20 * ((100vw - 320px) / 990));
   }
 }
 
@@ -159,7 +158,7 @@ body {
 /*==================== REPEAT BLOCK ====================*/
 [class*=__container] {
   width: 100%;
-  max-width: 1290px;
+  max-width: 1310px;
   padding: 0 15px;
   margin: 0 auto;
 }
@@ -176,4 +175,302 @@ body {
   object-fit: cover;
 }
 
+.title {
+  font-size: 50px;
+  font-weight: 700;
+  color: #fff;
+}
+@media (max-width: 1310px) {
+  .title {
+    font-size: calc(30px + 20 * ((100vw - 320px) / 990));
+  }
+}
+
+.link {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: #fff;
+  position: relative;
+  z-index: 3;
+}
+@media (min-width: 991.98px) {
+  .link::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1.2px;
+    bottom: -4px;
+    left: 0;
+    background: #3d96f4;
+    transform: scale(0);
+    transition: all 0.1s linear;
+  }
+  .link:hover::before {
+    transform: scale(1);
+  }
+}
+
+.button {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-align: center;
+  color: #fff;
+  padding: 15px 30px;
+  border-radius: 50px;
+  overflow: hidden;
+  transition: all 0.1s linear;
+  position: relative;
+  z-index: 3;
+}
+.button_blue-bg {
+  background: #3d96f4;
+}
+.button_gray-bg {
+  background: rgba(129, 129, 139, 0.2);
+}
+@media (min-width: 991.98px) {
+  .button_blue-bg:hover {
+    background: #65a9f3;
+  }
+  .button_gray-bg:hover {
+    background: rgba(129, 129, 139, 0.4);
+  }
+}
+@media (max-width: 767.98px) {
+  .button {
+    letter-spacing: 1px;
+    padding: 15px 20px;
+    border-radius: 45px;
+  }
+}
+@media (max-width: 500px) {
+  .button {
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    border-radius: 40px;
+  }
+}
+
 /*==================== REPEAT BLOCK ====================*/
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  padding: 5px 0;
+}
+.header::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: -100%;
+  left: 0;
+  z-index: 2;
+  background: transparent;
+  transition: all 0.2s linear;
+}
+.header.scroll::before {
+  top: 0;
+  background: #000;
+}
+@media (max-width: 991.98px) {
+  .header.active::before {
+    top: 0;
+    background: #000;
+  }
+}
+.header__body {
+  display: flex;
+  align-items: center;
+  min-height: 90px;
+  gap: 35px;
+}
+@media (max-width: 767.98) {
+  .header__body {
+    min-height: 60px;
+    gap: 25px;
+  }
+}
+@media (max-width: 500px) {
+  .header__body {
+    gap: 15px;
+  }
+}
+.header__logo {
+  position: relative;
+  z-index: 3;
+}
+@media (max-width: 500px) {
+  .header__logo {
+    width: 40px;
+    overflow: hidden;
+  }
+}
+.header__menu {
+  flex: 1 1 auto;
+}
+@media (max-width: 991.98px) {
+  .header__cart {
+    flex: 1 1 auto;
+  }
+}
+.header__button {
+  flex: 0 0 auto;
+}
+.header__burger {
+  flex: 0 0 30px;
+}
+
+.menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+@media (max-width: 991.98px) {
+  .menu {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: -100%;
+    left: 0;
+    background: rgba(129, 129, 139, 0.1);
+    padding: 150px 15px 30px 15px;
+    visibility: hidden;
+    overflow: auto;
+    transition: all 0.2s linear;
+    display: block;
+    justify-content: stretch;
+    align-items: stretch;
+  }
+  .menu.active {
+    top: 0;
+    visibility: visible;
+  }
+}
+.menu__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 30px;
+  row-gap: 10px;
+}
+@media (max-width: 991.98px) {
+  .menu__list {
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+    row-gap: 20px;
+    text-align: center;
+  }
+}
+@media (max-width: 991.98px) {
+  .menu__link {
+    display: block;
+    font-size: 32px;
+  }
+}
+
+.cart-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5px;
+  font-size: 18px;
+  color: #fff;
+  position: relative;
+  z-index: 3;
+}
+@media (max-width: 500px) {
+  .cart-header {
+    font-size: 16px;
+  }
+}
+.cart-header__text {
+  font-weight: 300;
+}
+@media (max-width: 374.98px) {
+  .cart-header__text {
+    display: none;
+  }
+}
+.cart-header__amount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(129, 129, 139, 0.2);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  font-weight: 500;
+}
+@media (max-width: 374.98px) {
+  .cart-header__amount {
+    background: transparent;
+    border-radius: 0;
+    overflow: auto;
+  }
+}
+.cart-header [name=bag-outline] {
+  display: none;
+}
+@media (max-width: 374.98px) {
+  .cart-header [name=bag-outline] {
+    display: block;
+    position: absolute;
+    top: -13px;
+    right: -7.5px;
+    font-size: 45px;
+    color: #fff;
+  }
+}
+
+.burger {
+  display: none;
+}
+@media (max-width: 991.98px) {
+  .burger {
+    display: block;
+    width: 30px;
+    height: 20px;
+    background: transparent;
+    position: relative;
+    z-index: 3;
+  }
+  .burger span, .burger::before, .burger::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1.6px;
+    left: 0;
+    background: #fff;
+    transition: all 0.2s linear;
+  }
+  .burger span {
+    top: 50%;
+    transform: translate(0, -50%) scale(1);
+  }
+  .burger::before {
+    top: 0;
+  }
+  .burger::after {
+    bottom: 0;
+  }
+  .burger.active span {
+    transform: translate(0, -50%) scale(0);
+  }
+  .burger.active::before {
+    top: 9px;
+    transform: rotate(-45deg);
+  }
+  .burger.active::after {
+    bottom: 9px;
+    transform: rotate(45deg);
+  }
+}

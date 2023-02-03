@@ -8,9 +8,8 @@
 
 /*==================== VARIABLES ====================*/
 $maxWidthLayout: 1440;
-$maxWidthContainer: 1290;
+$maxWidthContainer: 1310;
 $popFont: 'Poppins', sans-serif;
-$whiteColor: #fff;
 /*==================== VARIABLES ====================*/
 
 /*==================== MIXINS ====================*/
@@ -45,12 +44,11 @@ html {
 
 body {
   font-family: $popFont;
-  font-weight: 400;
-  line-height: 1.2;
-  background: #333;
-  color: #fff;
+  line-height: 1.4;
+  background: #0d0d11;
+  color: #9c9c9c;
 
-  @media (max-width: 768.98px) {
+  @media (max-width: 767.98px) {
     &.lock {
       overflow: hidden;
     }
@@ -61,7 +59,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100%;
-  overflow: hidden;
+  overflow: clip;
 }
 
 .main {
@@ -86,7 +84,7 @@ body {
   margin: 0 auto;
 }
 
-//! Responsive Image
+//! Responsive
 .ibg {
   position: relative;
 
@@ -99,4 +97,339 @@ body {
     object-fit: cover;
   }
 }
+
+//! Content
+.title {
+  @include respValue('font-size', 50, 30, 1);
+  font-weight: 700;
+  color: #fff;
+}
+
+.link {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: #fff;
+
+  position: relative;
+  z-index: 3;
+
+  @media (min-width: 991.98px) {
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 1.2px;
+      bottom: -4px;
+      left: 0;
+      background: #3d96f4;
+      transform: scale(0);
+      transition: all 0.1s linear;
+    }
+
+    &:hover {
+      &::before {
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+.button {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-align: center;
+  color: #fff;
+
+  padding: 15px 30px;
+  border-radius: 50px;
+  overflow: hidden;
+  transition: all 0.1s linear;
+
+  position: relative;
+  z-index: 3;
+
+  &_blue-bg {
+    background: #3d96f4;
+  }
+
+  &_gray-bg {
+    background: rgba(129, 129, 139, 0.2);
+  }
+
+  @media (min-width: 991.98px) {
+    &_blue-bg {
+      &:hover {
+        background: #65a9f3;
+      }
+    }
+
+    &_gray-bg {
+      &:hover {
+        background: rgba(129, 129, 139, 0.4);
+      }
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    letter-spacing: 1px;
+    padding: 15px 20px;
+    border-radius: 45px;
+  }
+
+  @media (max-width: 500px) {
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    border-radius: 40px;
+  }
+}
 /*==================== REPEAT BLOCK ====================*/
+
+//todo: HEADER
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  padding: 5px 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: -100%;
+    left: 0;
+    z-index: 2;
+    background: transparent;
+    transition: all 0.2s linear;
+  }
+
+  &.scroll {
+    &::before {
+      top: 0;
+      background: #000;
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    &.active {
+      &::before {
+        top: 0;
+        background: #000;
+      }
+    }
+  }
+
+  &__body {
+    display: flex;
+    align-items: center;
+    min-height: 90px;
+    gap: 35px;
+
+    @media (max-width: 767.98) {
+      min-height: 60px;
+      gap: 25px;
+    }
+
+    @media (max-width: 500px) {
+      gap: 15px;
+    }
+  }
+
+  &__logo {
+    position: relative;
+    z-index: 3;
+
+    @media (max-width: 500px) {
+      width: 40px;
+      overflow: hidden;
+    }
+  }
+
+  &__menu {
+    flex: 1 1 auto;
+  }
+
+  &__cart {
+    @media (max-width: 991.98px) {
+      flex: 1 1 auto;
+    }
+  }
+
+  &__button {
+    flex: 0 0 auto;
+  }
+
+  &__burger {
+    flex: 0 0 30px;
+  }
+}
+
+.menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  @media (max-width: 991.98px) {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: -100%;
+    left: 0;
+    background: rgba(129, 129, 139, 0.1);
+    padding: 150px 15px 30px 15px;
+    visibility: hidden;
+    overflow: auto;
+    transition: all 0.2s linear;
+
+    display: block;
+    justify-content: stretch;
+    align-items: stretch;
+
+    &.active {
+      top: 0;
+      visibility: visible;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 30px;
+    row-gap: 10px;
+
+    @media (max-width: 991.98px) {
+      flex-direction: column;
+      justify-content: stretch;
+      align-items: stretch;
+      row-gap: 20px;
+      text-align: center;
+    }
+  }
+
+  &__item {
+  }
+
+  &__link {
+    @media (max-width: 991.98px) {
+      display: block;
+      font-size: 32px;
+    }
+  }
+}
+
+.cart-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5px;
+
+  font-size: 18px;
+  color: #fff;
+
+  position: relative;
+  z-index: 3;
+
+  @media (max-width: 500px) {
+    font-size: 16px;
+  }
+
+  &__text {
+    font-weight: 300;
+
+    @media (max-width: 374.98px) {
+      display: none;
+    }
+  }
+
+  &__amount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(129, 129, 139, 0.2);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    font-weight: 500;
+
+    @media (max-width: 374.98px) {
+      background: transparent;
+      border-radius: 0;
+      overflow: auto;
+    }
+  }
+
+  [name='bag-outline'] {
+    display: none;
+
+    @media (max-width: 374.98px) {
+      display: block;
+      position: absolute;
+      top: -13px;
+      right: -7.5px;
+      font-size: 45px;
+      color: #fff;
+    }
+  }
+}
+.burger {
+  display: none;
+
+  @media (max-width: 991.98px) {
+    display: block;
+    width: 30px;
+    height: 20px;
+    background: transparent;
+    position: relative;
+    z-index: 3;
+
+    span,
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 1.6px;
+      left: 0;
+      background: #fff;
+      transition: all 0.2s linear;
+    }
+
+    span {
+      top: 50%;
+      transform: translate(0, -50%) scale(1);
+    }
+
+    &::before {
+      top: 0;
+    }
+
+    &::after {
+      bottom: 0;
+    }
+
+    &.active {
+      span {
+        transform: translate(0, -50%) scale(0);
+      }
+
+      &::before {
+        top: 9px;
+        transform: rotate(-45deg);
+      }
+
+      &::after {
+        bottom: 9px;
+        transform: rotate(45deg);
+      }
+    }
+  }
+}
