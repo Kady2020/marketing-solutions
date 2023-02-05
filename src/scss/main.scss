@@ -65,8 +65,11 @@ body {
 .main {
   flex: 1 1 auto;
 
-  &__class,
-  &__class {
+  &__intro,
+  &__clients {
+    &:not(:last-child) {
+      @include respValue('margin-bottom', 150, 90, 1);
+    }
   }
 
   &:not(:last-child) {
@@ -101,7 +104,7 @@ body {
 //! Content
 .title {
   @include respValue('font-size', 50, 30, 1);
-  font-weight: 700;
+  font-weight: 500;
   color: #fff;
 }
 
@@ -176,12 +179,6 @@ body {
   @media (max-width: 767.98px) {
     letter-spacing: 1px;
     padding: 15px 20px;
-    border-radius: 45px;
-  }
-
-  @media (max-width: 500px) {
-    letter-spacing: 1px;
-    padding: 10px 20px;
     border-radius: 40px;
   }
 }
@@ -230,7 +227,7 @@ body {
     min-height: 90px;
     gap: 35px;
 
-    @media (max-width: 767.98) {
+    @media (max-width: 767.98px) {
       min-height: 60px;
       gap: 25px;
     }
@@ -280,7 +277,7 @@ body {
     height: 100%;
     top: -100%;
     left: 0;
-    background: rgba(129, 129, 139, 0.1);
+    background: #111;
     padding: 150px 15px 30px 15px;
     visibility: hidden;
     overflow: auto;
@@ -342,9 +339,16 @@ body {
 
   &__text {
     font-weight: 300;
+    transition: all 0.1s linear;
 
     @media (max-width: 374.98px) {
       display: none;
+    }
+
+    @media (min-width: 991.98px) {
+      &:hover {
+        color: #3d96f4;
+      }
     }
   }
 
@@ -431,5 +435,137 @@ body {
         transform: rotate(45deg);
       }
     }
+  }
+}
+
+//todo: INTRO
+.intro {
+  padding: 134px 0 0 0;
+
+  @media (max-width: 767.98px) {
+    padding: 104px 0 0 0;
+  }
+
+  &__container {
+    display: flex;
+    gap: 30px;
+
+    @media (max-width: 767.98px) {
+      flex-direction: column;
+      gap: 40px;
+    }
+  }
+
+  &__content {
+    flex: 0 1 50%;
+    align-self: center;
+
+    > *:not(:last-child) {
+      margin: 0 0 30px 0;
+    }
+
+    @media (max-width: 767.98px) {
+      align-self: stretch;
+
+      > *:not(:last-child) {
+        margin: 0 0 20px 0;
+      }
+    }
+  }
+
+  &__title {
+    line-height: 1.2;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 122px;
+      height: 122px;
+      top: -10px;
+      left: -34px;
+      background: url('../img/decor.svg') 0 0 / 100% no-repeat;
+      z-index: -1;
+    }
+
+    @media (min-width: 768px) {
+      max-width: 520px;
+    }
+  }
+
+  &__text {
+    font-size: 18px;
+    font-weight: 300;
+    color: #9c9c9c;
+
+    @media (min-width: 768px) {
+      max-width: 520px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+
+    @media (max-width: 424.98px) {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+
+  &__button {
+  }
+
+  &__images {
+    flex: 0 1 50%;
+  }
+}
+
+.images-intro {
+  display: flex;
+  justify-content: center;
+  gap: 9.6%;
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  &__item {
+    overflow: hidden;
+
+    &_1,
+    &_4 {
+      border-radius: 50% / 29%;
+    }
+
+    &_2 {
+      border-radius: 50% 50% 0 50%;
+    }
+
+    &_3 {
+      border-radius: 50% 0 50% 50%;
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
+//todo: CLIENTS
+.clients {
+  &__container {
+  }
+
+  &__title {
+  }
+
+  &__items {
+  }
+
+  &__item {
   }
 }
